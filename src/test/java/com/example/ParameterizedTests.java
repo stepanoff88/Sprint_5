@@ -1,9 +1,8 @@
 package com.example;
 
-import com.example.Feline;
-import com.example.Lion;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -20,14 +19,13 @@ class ParameterizedTests {
     Feline felineMock;
 
     @ParameterizedTest
-    @ValueSource(strings = {"Самец", "Самка"})
-    void testLionSexParameterized(String sex) throws Exception {
+    @CsvSource({
+            "Самец, true",
+            "Самка, false"
+    })
+    void testLionSexParameterized(String sex, boolean expectedHasMane) throws Exception {
         Lion lion = new Lion(sex, felineMock);
-        if ("Самец".equals(sex)) {
-            assertEquals(true, lion.doesHaveMane());
-        } else {
-            assertEquals(false, lion.doesHaveMane());
-        }
+        assertEquals(expectedHasMane, lion.doesHaveMane());
     }
 
     @ParameterizedTest

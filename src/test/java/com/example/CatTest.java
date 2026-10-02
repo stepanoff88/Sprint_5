@@ -1,7 +1,6 @@
 package com.example;
 
-import com.example.Cat;
-import com.example.Feline;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
